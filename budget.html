@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   Create income function
+      function incomeObject(name, amount, recurring) {
+        this.name = name;
+        this.amount = amount;
+        this.recurring = recurring;
+      }
+
+      // Create income objects
+      let income1 = new incomeObject("Salary", 4000, true);
+      let income2 = new incomeObject("Freelance", 1500, false);
+      let income3 = new incomeObject("Investment", 600, true);
+      let income4 = new incomeObject("Rental Income", 800, true);
+      let income5 = new incomeObject("Gift", 200, false);
+
+      // Create expense function
+      function expenseObject(name, amount, recurring) {
+        this.name = name;
+        this.amount = amount;
+        this.recurring = recurring;
+      }
+
+      // Create expenses objects
+      let expense1 = new expenseObject("Groceries", 350, true);
+      let expense2 = new expenseObject("Rent", 1000, true);
+      let expense3 = new expenseObject("Utilities", 200, true);
+      let expense4 = new expenseObject("Transportation", 150, true);
+      let expense5 = new expenseObject("Entertainment", 100, false);
+
+      // Calculate total income and expenses
+      let totalIncome =
+        income1.amount +
+        income2.amount +
+        income3.amount +
+        income4.amount +
+        income5.amount;
+
+      let totalExpenses =
+        expense1.amount +
+        expense2.amount +
+        expense3.amount +
+        expense4.amount +
+        expense5.amount;
+
+      // Prompt to add another income entry
+      const additionalIncome = parseFloat(
+        prompt("Enter additional income amount:")
+      );
+      if (!isNaN(additionalIncome)) {
+        totalIncome += additionalIncome;
+      }
+
+      // Prompt to add another expense entry
+      const additionalExpense = parseFloat(
+        prompt("Enter additional expense amount:")
+      );
+      if (!isNaN(additionalExpense)) {
+        totalExpenses += additionalExpense;
+      }
+
+      // Calculate disposable income
+      let disposableIncome = totalIncome - totalExpenses;
+
+      // Prompt to save disposable income
+      const savings = parseFloat(
+        prompt(
+          "How much of your disposable income would you like to put into savings?"
+        )
+      );
+      if (!isNaN(savings)) {
+        disposableIncome -= savings;
+      }
+
+      // Store values in session storage
+      sessionStorage.setItem("totalIncome", totalIncome);
+      sessionStorage.setItem("totalExpenses", totalExpenses);
+      sessionStorage.setItem("disposableIncome", disposableIncome);
+
+      // Display total disposable income
+      alert(`Total disposable income: ${disposableIncome}`);
+    </script>
+  </body>
+</html>
